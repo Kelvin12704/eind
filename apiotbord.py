@@ -27,7 +27,7 @@ def potentio():
 def temp():
     temp_sensor = ADC(4)
     adc_value = temp_sensor.read_u16()
-    voltage = adc_value * 3.0 / 65535
+    voltage = adc_value * 3.3 / 65535
     return 27 - ((voltage - 0.706) / 0.001721)
 
   

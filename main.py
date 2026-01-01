@@ -1,5 +1,6 @@
 from apiotbord import led, start_up, potentio, temp, knop1, knop2, led1, led2, led3, led4, led5, led6, led7, led8
 from time import sleep
+import random
 
 start_up()
 while True:
@@ -54,7 +55,34 @@ while True:
             knop2_value = knop2().value()
             if knop2_value == 0: #stopt programma
                 break
-    elif potValue == 5 and knop1_value == 0: #selecteren programma 3
+    elif potValue == 5 and knop1_value == 0:  # Programma 3
+        while True:
+            if knop1().value() == 0: #knop 1 indrukken om te gooien
+                getal = random.randint(1, 6)
+                
+                for i in range(1,9): #alle leds gaan uit
+                    led(i).off()
+                
+                if getal == 1: #led 1 gaat aan
+                    led(3).on()
+                elif getal == 2:
+                    led(3).on(); led(4).on() #led 1 en 2 gaan aan
+                elif getal == 3:
+                    led(3).on(); led(4).on(); led(5).on() #enz...
+                elif getal == 4:
+                    led(3).on(); led(4).on(); led(5).on(); led(6).on()
+                elif getal == 5:
+                    led(3).on(); led(4).on(); led(5).on(); led(6).on(); led(7).on()
+                elif getal == 6:
+                    led(3).on(); led(4).on(); led(5).on(); led(6).on(); led(7).on(); led(8).on()
+                
+            knop2_value = knop2().value()
+            if knop2_value == 0: #stopt programma
+                for i in range(1, 9):    
+                    led(i).off()
+                break
+
+    elif potValue == 6 and knop1_value == 0: #selecteren programma 4
         while True:
             temperature = temp()
             print("Temp:", temperature)
@@ -95,3 +123,6 @@ while True:
             knop2_value = knop2().value()
             if knop2_value == 0: #stopt programma
                 break
+    elif potValue == 7 and knop1_value == 0:
+        while True:
+            
