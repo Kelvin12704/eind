@@ -1,19 +1,19 @@
 from machine import Pin, ADC
 from time import sleep
+import random
 
 
 def led(n): #define led 
     return Pin(n+1, Pin.OUT)
 
 def start_up():
-    for _ in range(5):
-        for i in range(9):
-            led(i).on()
-        sleep(0.1)
+    for i in range(9):
+        led(i).on()
+    sleep(0.5)
 
-        for i in range(9):
-            led(i).off()
-        sleep(0.1)
+    for i in range(9):
+        led(i).off()
+    sleep(0.5)
 
 
 def potentio():

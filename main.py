@@ -2,6 +2,7 @@ from apiotbord import led, start_up, potentio, temp, knop1, knop2, led1, led2, l
 from time import sleep
 import random
 
+
 start_up()
 while True:
     potValue = int(potentio()) 
@@ -55,7 +56,7 @@ while True:
             knop2_value = knop2().value()
             if knop2_value == 0: #stopt programma
                 break
-    elif potValue == 5 and knop1_value == 0:  # Programma 3
+    elif potValue == 5 and knop1_value == 0:  # Programma 4
         while True:
             if knop1().value() == 0: #knop 1 indrukken om te gooien
                 getal = random.randint(1, 6)
@@ -63,12 +64,12 @@ while True:
                 for i in range(1,9): #alle leds gaan uit
                     led(i).off()
                 
-                if getal == 1: #led 1 gaat aan
+                if getal == 1:
                     led(3).on()
                 elif getal == 2:
-                    led(3).on(); led(4).on() #led 1 en 2 gaan aan
+                    led(3).on(); led(4).on()
                 elif getal == 3:
-                    led(3).on(); led(4).on(); led(5).on() #enz...
+                    led(3).on(); led(4).on(); led(5).on()
                 elif getal == 4:
                     led(3).on(); led(4).on(); led(5).on(); led(6).on()
                 elif getal == 5:
@@ -123,6 +124,34 @@ while True:
             knop2_value = knop2().value()
             if knop2_value == 0: #stopt programma
                 break
-    elif potValue == 7 and knop1_value == 0:
+    elif potValue == 7 and knop1_value == 0: #programma 5
+        BESTAND = "getal.txt"
+     
         while True:
+            try:
+                # Getal lezen uit bestand
+                with open(BESTAND, "r") as f:
+                    aantal = int(f.read())
+
+                # Beveiliging: alleen 1 t.e.m. 8
+                if aantal < 1:
+                    aantal = 1
+                if aantal > 8:
+                    aantal = 8
+
+            except:
+                # Als bestand niet bestaat of fout is
+                aantal = 0
+
+            for i in range(1, 9):
+                led(i).off()
+
+            for i in range(1, aantal + 1):
+                led(i).on()
+
+            sleep(1)
             
+            knop2_value = knop2().value()
+            if knop2_value == 0:
+                led(i).off()
+                break
