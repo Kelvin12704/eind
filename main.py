@@ -86,7 +86,7 @@ while True:
     elif potValue == 6 and knop1_value == 0: #selecteren programma 4
         while True:
             temperature = temp()
-            print("Temp:", temperature)
+            print("Temp:", temperature) #test uitgaandee waarde
             sleep(1)
             if temperature > -10 and temperature < 0: #tussen -10 en 0 graden gaat led 1 aan
                 led1.on()
@@ -130,7 +130,7 @@ while True:
         while True:
             try:
                 # Getal lezen uit bestand
-                with open(BESTAND, "r") as f:
+                with open(BESTAND, "r") as f: #lees het bestand
                     aantal = int(f.read())
 
                 # Beveiliging: alleen 1 t.e.m. 8
@@ -152,6 +152,6 @@ while True:
             sleep(1)
             
             knop2_value = knop2().value()
-            if knop2_value == 0:
+            if knop2_value == 0: #stopt het prograama
                 led(i).off()
                 break
